@@ -1,1 +1,5 @@
-print("17776 type shi")
+def main() -> None:
+    print("17776mark")
+
+if __name__ == "main":
+    main()
