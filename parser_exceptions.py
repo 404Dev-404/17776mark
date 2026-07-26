@@ -14,7 +14,7 @@ class ParserInvalidOptionKey(Exception):
         self.option_key = option_key
 
     def __str__(self):
-        return f"17776mark: Invalid option key at line {self.line_num}: ({self.option_key})"
+        return f"17776mark: Invalid option key at line {self.line_num + 1}: ({self.option_key})"
 
 class ParserUndefinedCharacter(Exception):
     def __init__(self, line_num: int, character_name: str):
@@ -23,7 +23,7 @@ class ParserUndefinedCharacter(Exception):
         self.character_name = character_name
 
     def __str__(self):
-        return f"17776mark: Undefined character '{self.character_name}' at line {self.line_num}."
+        return f"17776mark: Undefined character '{self.character_name}' at line {self.line_num + 1}."
 
 class ParserOptionsConflict(Exception):
     def __init__(self, option_a: str, option_b: str, conflict: str):
@@ -34,3 +34,11 @@ class ParserOptionsConflict(Exception):
 
     def __str__(self):
         return f"17776mark: Conflict in options \"{self.option_a}\" and \"{self.option_b}\". ({self.conflict})."
+
+class ParserInvalidExportMode(Exception):
+    def __init__(self, mode: str):
+        super().__init__()
+        self.mode = mode
+
+    def __str__(self):
+        return f"17776mark: Invalid mode \"{self.mode}\"."

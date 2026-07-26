@@ -2,6 +2,7 @@ from dataclasses import dataclass
 
 import parse
 
+import export
 import parser_exceptions
 
 markup_patterns = [
@@ -13,7 +14,7 @@ markup_patterns = [
 default_parser_options = {
     "dialogue.initial_dots": "False",
     "dialogue.add_name_tags": "False",
-    "format.indent_width": 10,
+    "format.indent_width": "10",
     "format.font_family": "Arial",
     "format.font_size": "1.25rem"
 }
@@ -34,11 +35,9 @@ class Parser:
         self.characters_defined: list[CharacterDef] = []
         self.dialogue: list[DialogueDef] = []
         self.defined_character_names: list[str] = []
-        self.parser_options: dict[str, str | int | bool] = default_parser_options
+        self.parser_options: dict[str, str] = default_parser_options.copy()
 
-    def process(self, input: str) -> str:
-        output = ""
-
+    def compile(self, input: str) -> None:
         lines: list[str] = input.splitlines()
         #print(lines)
 
@@ -60,10 +59,6 @@ class Parser:
                     break
             else:
                 raise parser_exceptions.ParserInvalidLine(num, line)
-
-        output = self._generate_html()
-
-        return output
 
     def _handle_character(self, character_parse: parse.Result) -> None:
         character_definition: CharacterDef = CharacterDef(character_parse['name'], character_parse['colour'], character_parse['indent'])
@@ -100,55 +95,3 @@ class Parser:
 
             line_of_dialogue: DialogueDef = DialogueDef(name, contents)
             self.dialogue.append(line_of_dialogue)
-
-    # WARNING TO WEB DEVELOPERS: I am so sorry for the horrors you are about to witness.
-    def _generate_html(self) -> str:
-        html: str = ""
-
-        html += "<!DOCTYPE html>"
-        html += "<html>"          # starting HTML
-
-        html += "<head>"          # starting head
-
-        html += "<style>"         # starting style
-
-        html += self._generate_dialogue_style()
-
-        html += " "
-
-        for character in self.characters_defined:
-            html += self._generate_character_style(character)
-
-        html += "</style>"        # closing style
-
-        html += "</head>"         # closing head
-
-        html += "<body>"          # starting body
-
-        for line in self.dialogue:
-            html += self._generate_line_of_dialogue(line)
-
-        html += "</body>"         # closing body
-
-        html += "</html>"         # closing HTML
-
-        return html
-
-    def _generate_character_style(self, character: CharacterDef) -> str:
-        name: str = character.name
-        color: int = character.color
-        indent: int = character.indent
-
-        style: str = f".{name} {{color: #{color:x}; padding-left: {self.parser_options['format.indent_width'] * indent}%;}}"
-
-        return style
-
-    def _generate_dialogue_style(self) -> str:
-        style: str = f"""body {{background-color: #000000; font-family: \"{self.parser_options['format.font_family']}\"; font-size: {self.parser_options['format.font_size']}; line-height: 1.6;}}"""
-
-        return style
-
-    def _generate_line_of_dialogue(self, line: DialogueDef) -> str:
-        para: str = f"<p class=\"{line.name}\">{line.contents}</p>"
-
-        return para
