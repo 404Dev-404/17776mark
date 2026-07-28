@@ -14,7 +14,7 @@ default_parser_options = {
     "dialogue.initial_dots": "False",
     "dialogue.add_name_tags": "False",
     "format.indent_width": "10",
-    "format.font_family": "Arial",
+    "format.font_family": "Helvetica, Arial, sans-serif",
     "format.font_size": "1.25rem"
 }
 
