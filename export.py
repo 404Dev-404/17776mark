@@ -45,7 +45,7 @@ class HTMLExport(Export):
         color: int = character.color
         indent: int = character.indent
 
-        style: str = f".{name} {{color: #{color:x}; padding-left: {int(self.options['format.indent_width']) * indent}%;}}"
+        style: str = f".{name} {{color: #{color:06x}; padding-left: {int(self.options['format.indent_width']) * indent}%;}}"
 
         return style
 
@@ -101,7 +101,7 @@ class AO3Export(Export):
         style: str = ""
 
         style += f"#workskin {char.name} {{\n"
-        style += f"\tcolor: #{char.color:x};\n"
+        style += f"\tcolor: #{char.color:06x};\n"
         style += f"\tmargin-left: {char.indent * self.options['format.indent_width']}%;\n"
         style += "}\n\n"
 
