@@ -50,7 +50,7 @@ class HTMLExport(Export):
         return style
 
     def _generate_dialogue_style(self) -> str:
-        style: str = f"""body {{background-color: #000000; font-family: \"{self.options['format.font_family']}\"; font-size: {self.options['format.font_size']}; line-height: 1.6;}}"""
+        style: str = f"""body {{background-color: #000000; font-family: {self.options['format.font_family']}; font-size: {self.options['format.font_size']}; line-height: 1.6;}}"""
 
         return style
 
