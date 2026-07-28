@@ -41,6 +41,19 @@ The syntax for this directive is as follows:
 #option [key] [value]
 ```
 
+#### Options
+
+The options currently available in 17776mark are:
+- `format`
+  - `indent_width`: Sets width of indent as a percentage of the page's width. This option can be set as a number, without inclusion of the percent sign. (Default is 10%.)
+  - `font_family`: Sets the font for the dialogue. Currently this applies to all lines of dialogue; the font cannot be switched mid-dialogue, nor can it be switched per character. You can set multiple font alternatives in a list as such, `font1, font2, font3, ...`. (Default is "Helvetica, Arial, sans-serif".)
+  - `font_size`: Sets the size of the font for the dialogue. The unit for this option (px, pt, em, rem, etc.) must be included manually. (Default is 1.25rem.)
+- `dialogue`
+  - `initial_dots`: Set whether to prefix dots or not (so as to mimic the format of the dialogue in 17776's embedded videos.) This option **must** be set as either `True` or `False`, exactly as written, otherwise the program won't recognise what you mean. (Default is False.)
+  - `add_name_tags`: Set whether to include the names of the characters (which are derived from the internal character name, as set by their directive), like `CHARACTER:`. (Default is False.)
+
+Option keys are typed by following their order in the tree, putting a period after every step into the tree. For example, the option for `add_name_tags` under `dialogue` would be written as `dialogue.add_name_tags`. These keys must be written exactly as they appear in this document, otherwise the program won't recognize what you are talking about.
+
 For lines of dialogue, write it in transcript form; as follows: 
 ```
 [character]: "[text]"
