@@ -77,7 +77,7 @@ class Parser:
         if self.parser_options['dialogue.initial_dots'] == "True" and self.parser_options['dialogue.add_name_tags'] == "True":
             raise parser_exceptions.ParserOptionsConflict("dialogue.initial_dots", "dialogue.add_name_tags", "Initial dots and name tags cannot be combined.")
 
-        print(self.parser_options)
+        #print(self.parser_options)
 
     def _handle_dialogue(self, dialogue_parse: parse.Result, line_num: int) -> None:
         name: str = dialogue_parse['name']
