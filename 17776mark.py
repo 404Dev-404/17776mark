@@ -1,11 +1,12 @@
 #!/usr/bin/python
 
 import argparse
-from pathlib import Path
 import sys
+from pathlib import Path
 
 import engine
 import parser_exceptions
+
 
 def main() -> None:
     argparser: argparse.ArgumentParser = argparse.ArgumentParser(
