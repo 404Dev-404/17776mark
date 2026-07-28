@@ -2,7 +2,6 @@ from dataclasses import dataclass
 
 import parse
 
-import export
 import parser_exceptions
 
 markup_patterns = [
