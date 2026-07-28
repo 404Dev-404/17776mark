@@ -103,6 +103,6 @@ class AO3Export(Export):
         style += f"#workskin {char.name} {{\n"
         style += f"\tcolor: #{char.color:x};\n"
         style += f"\tmargin-left: {char.indent * self.options['format.indent_width']}%;\n"
-        style += f"}}\n\n"
+        style += "}\n\n"
 
         return style
