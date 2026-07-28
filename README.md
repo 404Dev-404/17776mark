@@ -63,6 +63,7 @@ If you want to output in AO3 mode, you can use the `-m`/`--mode` flags to set AO
 `17776mark.exe filename.17776mk --mode ao3`
 
 **Note:** It is **necessary** that you type `ao3` as is, otherwise the program won't recognize what mode you're referring to.
+**Note:** In AO3 mode, the workskin will be included at the top of the HTML in a comment titled `WORKSKIN INCLUDED HERE!`.
 
 #### MacOS, Linux, or people who want to run from source
 
